@@ -2,6 +2,9 @@ from youtube_transcript_api import YouTubeTranscriptApi
 from bs4 import BeautifulSoup
 import requests
 import re
+from pytube import YouTube
+
+
 
 class GetVideo:
     @staticmethod
@@ -18,9 +21,9 @@ class GetVideo:
         else:
             return None
 
-    @staticmethod
+    """@staticmethod
     def title(link):
-        """Gets the title of a YouTube video."""
+        #Gets the title of a YouTube video.
         r = requests.get(link) 
         s = BeautifulSoup(r.text, "html.parser") 
         try:
@@ -28,7 +31,15 @@ class GetVideo:
             return title
         except TypeError:
             title = "⚠️ There seems to be an issue with the YouTube video link provided. Please check the link and try again."
-            return title
+            return title"""
+    @staticmethod
+    def title(link):
+        """Gets the title of a YouTube video using pytube."""
+        try:
+            yt = YouTube(link)
+            return yt.title
+        except Exception as e:
+            return "⚠️ There seems to be an issue with the YouTube video link provided. Please check the link and try again."
         
     @staticmethod
     def transcript(link):
