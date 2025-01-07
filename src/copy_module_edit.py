@@ -71,6 +71,7 @@ class ModuleEditor:
 </body>
 </html>
             """
+        """hellooo"""
         self.write_file(self.index_html_path, new_index_html_content.strip())
 
     def modify_frontend_files(self):
